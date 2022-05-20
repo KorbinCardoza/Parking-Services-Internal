@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background: #005daa; padding-left: 25%;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <img style="width: 220px; height: auto;" class="col-sm-3" src="~/Content/COS_Logo.png" alt="City of Salem" />
+                <form action="">
+                    <button type="button" class="btn btn-primary" style="margin-top: 20px;" onclick="location.href = '@Url.Action("Index", "Complaint")'">Home</button>
+                </form>
+                <div style="color:white">
+                    <title>@ViewBag.Title - Parking Services</title>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Parking Services</title>
+
+</header>
+
+
+
+<div class="container body-content">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.cerulean.css" />
+
+          @RenderBody()
+    <hr />
+    <div id="footer" style="background: white;">
+        <p class="copyright" style="text-align: center;">
+            Copyright ©
+            <SCRIPT type=text/javascript>
+                var theDate = new Date()
+                document.write(theDate.getFullYear())
+            </SCRIPT>
+
+            2011 City of Salem, Oregon All Rights Reserved<br>
+            All City pages are maintained by City of Salem employees.<br>
+            Email comments or suggestions to
+            <a href="mailto:webmaster@cityofsalem.net">
+                webmaster@cityofsalem.net
+            </a><br>
+            <a href="http://www.cityofsalem.net/Pages/WebsiteDisclaimer.aspx">
+                Website
+                Disclaimer
+            </a> |
+            <a href="http://www.cityofsalem.net/NonDiscrimination/Pages/default.aspx">
+                Non-Discrimination
+            </a> |
+            <a title="ADA Accommodations are available upon request." href="http://www.cityofsalem.net/Departments/HumanResources/ADA-Ethics/Pages/default.aspx">
+                ADA Accommodation
+            </a> | <a href="http://www.cityofsalem.net/CityCouncil/humanrights">Human Rights &amp; Relations</a>
+
+        </p>
+
+
+    </div>
+</div>
+<script src="~/Scripts/ShowHide.js"></script>
+
+@RenderSection("scripts", required: false)
+
+</html>

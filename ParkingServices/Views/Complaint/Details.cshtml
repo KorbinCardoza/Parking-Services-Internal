@@ -1,0 +1,199 @@
+﻿@model Complaint
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Complaint</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplaintDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplaintDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailFlag)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailFlag)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleModel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleMake)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleMake)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehiclePlate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehiclePlate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VehicleLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VehicleLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CitationNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CitationNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeterId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeterId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeterStreet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeterStreet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentLastFour)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentLastFour)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkedLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkedLocation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PermitNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermitNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplaintDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplaintDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplaintStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplaintStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplaintTypeNavigation.ComplaintTypeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplaintTypeNavigation.ComplaintTypeDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ComplaintId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

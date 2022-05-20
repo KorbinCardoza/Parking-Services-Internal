@@ -1,0 +1,374 @@
+﻿@model Complaint
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Complaint - @ViewBag.ComplaintID</h2>
+
+
+<button type="button" class="btn btn-link" onclick="Showall()">
+    <span class="glyphicon glyphicon-plus" id="hideshow"> Toggle Details</span>
+
+</button>
+
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ComplaintId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+
+            <div id="hiddeninfo" style="display: none; white-space: nowrap;">
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.ComplaintDateTime">Created Date/Time</label>
+                        @Html.EditorFor(model => model.ComplaintDateTime, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.ComplaintDateTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.FirstName">First Name</label>
+
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.LastName">Last Name</label>
+
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.EmailAddress">Email</label>
+                        @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+
+
+                    <div class="form-group col-xs-6">
+                        <div style="padding-right: 190px;">
+                            <label for="@Model.Phone">Phone Number</label>
+                        </div>
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.ComplaintTypeNavigation.ComplaintTypeDescription">Complaint Type</label>
+
+                        @Html.EditorFor(model => model.ComplaintTypeNavigation.ComplaintTypeDescription, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.ComplaintTypeNavigation.ComplaintTypeDescription, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-xs-6" id="Locationtxt">
+                        <label for="@Model.ParkedLocation">Parked Location</label>
+
+                        @Html.EditorFor(model => model.ParkedLocation, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.ParkedLocation, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.AddressLine1">Address Line 1</label>
+
+                        @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.AddressLine2">Address Line 2</label>
+
+                        @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <div style="padding-right: 230px;">
+                            <label for="@Model.City">City</label>
+                        </div>
+                        @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <div style="padding-right: 230px;">
+                            <label for="@Model.State">State</label>
+                        </div>
+                        @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.Zip">Zip Code</label>
+
+                        @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6" id="Citationnumtxt">
+                        <label for="@Model.CitationNumber">Citation Number</label>
+
+                        @Html.EditorFor(model => model.CitationNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.CitationNumber, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <div style="padding-right: 150px;">
+                            <label for="@Model.VehicleModel">Model</label>
+                        </div>
+                        @Html.EditorFor(model => model.VehicleModel, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.VehicleModel, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-xs-6" id="MeterIDtxt">
+                        <label for="@Model.MeterId">Meter Id</label>
+
+                        @Html.EditorFor(model => model.MeterId, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.MeterId, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <div style="padding-right: 190px;">
+                            <label for="@Model.VehicleMake">Make</label>
+                        </div>
+                        @Html.EditorFor(model => model.VehicleMake, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.VehicleMake, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-xs-6" id="MeterSttxt">
+                        <label for="@Model.MeterStreet">Meter Location</label>
+
+                        @Html.EditorFor(model => model.MeterStreet, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.MeterStreet, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <div style="padding-right: 190px;">
+                            <label for="@Model.VehicleColor">Color</label>
+                        </div>
+                        @Html.EditorFor(model => model.VehicleColor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.VehicleColor, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-xs-6" id="Paymenttypetxt">
+                        <label for="@Model.PaymentType">Type of Payment</label>
+                        @Html.EditorFor(model => model.PaymentType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.VehiclePlate">License Plate</label>
+
+                        @Html.EditorFor(model => model.VehiclePlate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.VehiclePlate, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6" id="PaymentAmounttxt">
+                        <label for="@Model.PaymentAmount">Payment Amount</label>
+
+                        @Html.EditorFor(model => model.PaymentAmount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.PaymentAmount, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                </div>
+                <div class="row" style="max-height: 78px">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.EmailFlag">Email Updates?</label>
+
+                        @Html.EditorFor(model => model.EmailFlag, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        <div class="checkbox">
+                            @*@Html.RadioButtonFor(model => model.EmailFlag, "Yes", true) Yes
+                                @Html.RadioButtonFor(model => model.EmailFlag, "No", false) No*@
+                            @*@Html.EditorFor(model => model.EmailFlag)
+                                @Html.ValidationMessageFor(model => model.EmailFlag, "", new { @class = "text-danger" })*@
+
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-6" id="PaymentLastFourtxt">
+                        @*@Html.LabelFor(model => model.PaymentLastFour, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                        <label for="@Model.PaymentLastFour">Payment Last Four</label>
+
+                        @Html.EditorFor(model => model.PaymentLastFour, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.PaymentLastFour, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-xs-6">
+                        <label for="@Model.PermitNumber">Permit Number</label>
+
+                        @Html.EditorFor(model => model.PermitNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.PermitNumber, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <hr />
+
+            </div>
+
+
+
+
+            @{
+                List<SelectListItem> listItemsStatus = new List<SelectListItem>();
+                listItemsStatus.Add(new SelectListItem
+                {
+                    Text = "Closed",
+                    Value = "Closed"
+                });
+                listItemsStatus.Add(new SelectListItem
+                {
+                    Text = "In Progress",
+                    Value = "InProgress",
+
+                });
+                listItemsStatus.Add(new SelectListItem
+                {
+                    Text = "Open",
+                    Value = "Open",
+                    Selected = true
+                });
+            }
+
+            <div class="row">
+                <div class="form-group col-xs-6" style="white-space: nowrap;">
+                    <label for="@Model.ComplaintDetails">Complaint Details</label>
+
+
+                    @Html.TextAreaFor(model => model.ComplaintDetails, new { @class = "form-control", rows = "10", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.ComplaintDetails, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group col-xs-6" style="padding-left: 100px;">
+                    <label for="@Model.Response">Response</label>
+
+                    @Html.TextAreaFor(model => model.Response, new { @class = "form-control", rows = "10" })
+                    @Html.ValidationMessageFor(model => model.Response, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-xs-6" style="white-space: nowrap;">
+                    <label for="@Model.Employee">Assigned Employee</label>
+
+                    @*@Html.DropDownListFor(model => model.Employee, (SelectList)ViewBag.EmployeeDD, "", htmlAttributes: new { @class = "form-control" })*@
+
+                    @Html.DropDownList("EmployeeUserName", new SelectList(ViewBag.EmployeeDD), "",htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmployeeId, "", new { @class = "text-danger" })
+
+                </div>
+
+
+                <div class="form-group col-xs-6" style="padding-left: 100px;">
+                    <label for="@Model.ComplaintStatus">Complaint Status</label>
+
+                    @Html.DropDownListFor(model => model.ComplaintStatus, listItemsStatus, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ComplaintStatus, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-group col-xs-6">
+
+
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+            </div>
+
+            <div class="form-group col-xs-6">
+
+                <a href="mailto:@Html.DisplayFor(model => model.EmailAddress)?subject=Parking Services Issue Response&body=@Html.DisplayFor(model=>model.Response)"> <i class="fas fa-envelope-open-text"></i>Email</a>
+
+            </div>
+
+        </div>
+    </div>
+
+
+}
+
+
+
+
+<script>
+    function Showall() {
+
+        var b = document.getElementById("hideshow");
+        var e = document.getElementById("hiddeninfo");
+
+
+        if (e.style.display == 'block') {
+            e.style.display = 'none';
+
+            $(".glyphicon").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+        }
+        else {
+            e.style.display = 'block';
+            $(".glyphicon").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+
+
+        }
+    }
+</script>
+    
+
+
+
+
+<script src="https://kit.fontawesome.com/5b2bd23d5f.js" crossorigin="anonymous"></script>

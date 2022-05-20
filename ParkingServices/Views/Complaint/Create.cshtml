@@ -1,0 +1,291 @@
+﻿@model Complaint
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("ComplaintDateTime", DateTime.Now)
+    @Html.Hidden("ComplaintStatus", "Open")
+    @Html.Hidden("EmployeeID", null)
+    @Html.Hidden("Response", null)
+
+
+
+    <h1 style="text-align: center;">
+        Parking Services Complaint/Questions
+    </h1>
+    <h4 style="text-align: center; font-weight:bold; color:black;">
+        The information you share is private and not shared with anyone.
+    </h4>
+    <hr />
+
+    <div class="form-horizontal" style="width: 1400px;">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group col-xs-6">
+
+                <div class="col-md-10">
+                    <p>First Name</p>
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", id = "firstname" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group col-xs-6">
+                <div class="col-md-10">
+                    <p>Last Name</p>
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id = "lastname" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-6">
+                <div class="col-md-10">
+                    <p>Email Address</p>
+                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", id = "emailaddress" } })
+                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group col-xs-6">
+                <div class="col-md-10">
+                    <p>Phone Number</p>
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", id = "phoneNumber" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-xs-6">
+                <div class="col-md-10">
+                    <p>Address Line 1 (Address of vehicle location)</p>
+                    @Html.EditorFor(model => model.AddressLine1, new { htmlAttributes = new { @class = "form-control", id = "addressLine1" } })
+                    @Html.ValidationMessageFor(model => model.AddressLine1, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-xs-6">
+                <div class="col-md-10">
+                    <p>Address Line 2 (Address of vehicle location)</p>
+                    @Html.EditorFor(model => model.AddressLine2, new { htmlAttributes = new { @class = "form-control", id = "addressLine2" } })
+                    @Html.ValidationMessageFor(model => model.AddressLine2, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-6">
+                <div class="col-md-10">
+                    <p>City</p>
+                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", id = "city" } })
+                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-xs-6" id="Citationnumtxt">
+                <div class="col-md-10">
+                    <p>State</p>
+                    @Html.EditorFor(model => model.State, new { htmlAttributes = new { @class = "form-control", id = "state" } })
+                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-xs-6" display="inline;">
+                <div class="col-md-10">
+                    <p>Zip</p>
+                    @Html.EditorFor(model => model.Zip, new { htmlAttributes = new { @class = "form-control", id = "zip" } })
+                    @Html.ValidationMessageFor(model => model.Zip, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-xs-6" id="Citationnumtxt">
+                <div class="col-md-10">
+                    <p>Ticket Number (if applicable)</p>
+                    @Html.EditorFor(model => model.CitationNumber, new { htmlAttributes = new { @class = "form-control", id = "ticketNum" } })
+                    @Html.ValidationMessageFor(model => model.CitationNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-6" display="inline;">
+                <div class="col-md-10">
+                    <p>Permit Number (if applicable)</p>
+                    @Html.EditorFor(model => model.PermitNumber, new { htmlAttributes = new { @class = "form-control", id = "PermitNum" } })
+                    @Html.ValidationMessageFor(model => model.PermitNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        @*Second half of page*@
+        <div style="padding-left: 10%;">
+            <div style="white-space: nowrap;">
+
+                <div class="row">
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 80px; padding-top: 9px; padding-right: 130px;">
+                        Complaint Type
+                    </div>
+                    <div class="form-group col-xs-6" style="display: inline-block; width: 615px;">
+                        @Html.DropDownList("ComplaintType", null, htmlAttributes: new { @class = "form-control", onchange = "typeSelectedChange()", id = "ComplaintTypeDD", name = "ComplaintTypeDD" })
+                        @Html.ValidationMessageFor(model => model.ComplaintType, "", new { @class = "text-danger", id = "ComplaintTypeDDE" })
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-xs-6" style="display: none; white-space: nowrap; font-weight: Bold; padding-left: 10%; width: 56%;" id="Locationtxt">
+                        Where are you parked?
+                        @Html.DropDownList("ParkedLocation", null, htmlAttributes: new { @class = "form-control", onchange = "typeSelectedChange()", id = "parkedLocation" })
+                        @Html.ValidationMessageFor(model => model.ParkedLocation, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+
+
+                <div class="row" style="padding-left: 65px;">
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 80px; padding-top: 9px;">
+                        Make
+                    </div>
+                    <div class="form-group col-xs-6" style="display: inline-block">
+                        @Html.EditorFor(model => model.VehicleMake, new { htmlAttributes = new { @class = "form-control", id = "make" } })
+                        @Html.ValidationMessageFor(model => model.VehicleMake, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                    <div class="form-group col-xs-6" style="display: none; white-space: nowrap; font-weight: Bold; padding-left: 54.5%; width: 100%;" id="MeterIDtxt">
+                        Meter ID
+                        @Html.EditorFor(model => model.MeterId, new { htmlAttributes = new { @class = "form-control", id = "meterId" } })
+                        @Html.ValidationMessageFor(model => model.MeterId, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+
+                <div class="row" style="padding-left: 65px;">
+
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 80px; padding-top: 9px;">
+                        Model
+                    </div>
+                    <div class="form-group col-xs-6" style="display: inline-block">
+
+                        @Html.EditorFor(model => model.VehicleModel, new { htmlAttributes = new { @class = "form-control", id = "model" } })
+                        @Html.ValidationMessageFor(model => model.VehicleModel, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="form-group col-xs-6" style="display: none; white-space: nowrap; font-weight: Bold; padding-left: 54.5%; width: 100%;" id="MeterSttxt">
+                        Meter Location
+                        @Html.EditorFor(model => model.MeterStreet, new { htmlAttributes = new { @class = "form-control", id = "meterLocation" } })
+                        @Html.ValidationMessageFor(model => model.MeterStreet, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="row" style="padding-left: 65px;">
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 80px; padding-top: 9px; padding-right: 50px;">
+                        Color
+                    </div>
+                    <div class="form-group col-xs-6" style="display: inline-block">
+                        @Html.EditorFor(model => model.VehicleColor, new { htmlAttributes = new { @class = "form-control", id = "color" } })
+                        @Html.ValidationMessageFor(model => model.VehicleColor, "", new { @class = "text-danger" })
+
+                    </div>
+                    @{
+
+                    }
+                    <div class="form-group col-xs-6" style="display: none; white-space: nowrap; font-weight: Bold; padding-left: 54.5%; width: 100%;" id="Paymenttypetxt">
+                        Type of Payment
+                        @Html.DropDownList("PaymentType", null, htmlAttributes: new { @class = "form-control", id = "PaymentTypeDD", onchange = "paymentSelectedChange()" })
+                        @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="row" style="white-space: nowrap; padding-left: 15px;">
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 80px; padding-top: 9px; padding-right: 115px;">
+                        License Plate
+                    </div>
+                    <div class="form-group col-xs-6" style="display: inline-block; width: 615px;">
+                        @Html.EditorFor(model => model.VehiclePlate, new { htmlAttributes = new { @class = "form-control", id = "plateNumber" } })
+
+                        @Html.ValidationMessageFor(model => model.VehiclePlate, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6" style="display: none; white-space: nowrap; font-weight: Bold; padding-left: 55.9%; width: 100%;" id="PaymentAmounttxt">
+                        Payment Amount
+                        @Html.EditorFor(model => model.PaymentAmount, new { htmlAttributes = new { @class = "form-control", id = "paymentAmount" } })
+                        @Html.ValidationMessageFor(model => model.PaymentAmount, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+
+                </div>
+                <div class="row" style="max-width: 1225px;">
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 10px; padding-top: 9px; padding-right: 130px;">
+                        Other Comments
+                    </div>
+                    <div class="form-group col-xs-6" style="display: inline-block">
+                        @Html.TextAreaFor(model => model.ComplaintDetails, new { @class = "form-control", rows = "10", id = "details" })
+                        @Html.ValidationMessageFor(model => model.ComplaintDetails, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group col-xs-6" style="display: none" id="PaymentLastFourtxt">
+                        @Html.LabelFor(model => model.PaymentLastFour, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                        @Html.EditorFor(model => model.PaymentLastFour, new { htmlAttributes = new { @class = "form-control", id = "lastFour" } })
+                        @Html.ValidationMessageFor(model => model.PaymentLastFour, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+                <div class="row" style="padding-left: 16%;">
+                    <div class="form-group col-xs-6" style="display: inline-block; font-weight: Bold; max-width: 80px; padding-top: 9px; padding-left: 150px;">
+                        <label>Would you like to be emailed updates?</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+
+                    <div class="checkbox" style="padding-left: 27%;">
+                        @Html.RadioButtonFor(model => model.EmailFlag, "Yes", true) Yes
+                        @Html.RadioButtonFor(model => model.EmailFlag, "No", false) No
+
+                    </div>
+                </div>
+                <div class="form-group" style="padding-left: 150px;">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-primary" id="BottomButton" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}
+<script src="~/js/ShowHide.js"></script>
+<script src="~/js/Main.js"></script>

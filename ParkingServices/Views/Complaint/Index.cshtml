@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Complaint>
+
+@{
+    ViewBag.Title = "Complaints";
+}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5b2bd23d5f.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script>
+
+        $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+
+    </script>
+
+    <body style="background-color: white;">
+        <h1 style="text-align: center;">Complaints</h1>
+
+
+        <div style="display: inline-block;">
+                <a class="btn btn-primary" href="~/Complaint/Create" role="button">Create New</a>
+            </div>
+            @using (Html.BeginForm("Index"))
+            {
+                <text>Filter Complaint </text>
+
+                @*@Html.DropDownList("EmployeeId", new SelectList(@ViewBag.EmployeeDD), "All Staff");*@
+               
+                @Html.DropDownList("empkey", new SelectList(ViewBag.EmployeeDD), "All Staff")
+                @Html.DropDownList("complaintstatus", new SelectList(ViewBag.Status), "Any Status")
+
+                <input type="submit" class="btn btn-primary btn-sm" value="Search" />
+            }
+
+
+        </div>
+        <p></p>
+        <form id="form1" runaat="server">
+            <table id="filterTable" class="display" style="border-collapse: separate; border-spacing: 1em; white-space: nowrap;">
+                <thead>
+                    <tr>
+                        <th>Complaint ID</th>
+                        <th>Entered Date/Time</th>
+                        <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                        <th> @Html.DisplayNameFor(model => model.LastName)</th>
+                        <th>@Html.DisplayNameFor(model => model.EmailAddress)</th>
+                        <th>Email Update?</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th>Type</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style = "background-color:white">
+                                @item.ComplaintId
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.ComplaintDateTime)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.EmailAddress)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.EmailFlag)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.ComplaintStatus)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.Employee.UserName)
+                            </td>
+                            <td style = "background-color:white">
+                                @Html.DisplayFor(modelItem => item.ComplaintTypeNavigation.ComplaintTypeDescription)
+                            </td>
+                            <td style = "background-color:white">
+                                <a href="@Url.Action("Edit", "Complaint", new {id = item.ComplaintId})" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </form>
+    </body>
